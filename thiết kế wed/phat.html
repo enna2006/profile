@@ -177,21 +177,9 @@
       {name: 'React (đang học)', level: 60}
     ];
 
-const PROJECTS = [
-  {
-    title: 'Web Đánh Giá Sách',
-    desc: 'Ứng dụng đánh giá sách cho bạn đọc.',
-    demo: 'https://akhoaaaa1-ai.github.io/NhomTuDo/',
-    repo: '#'
-  },
-  {
-    title: 'Portfolio cá nhân',
-    desc: 'Trang giới thiệu bản thân sử dụng DOM API + Bootstrap.',
-    demo: '#',
-    repo: '#'
-  }
-];
-
+    const PROJECTS = [
+      {title: 'Wed Đánh Giá Sách', desc: 'Web để bạn đọc đánh giá sách. Link:https://akhoaaaa1-ai.github.io/NhomTuDo/', demo: '#', repo: '#'},
+      {title: 'Portfolio cá nhân', desc: 'Trang giới thiệu bản thân sử dụng DOM API + Bootstrap.', demo: '#', repo: '#'}
     ];
 
     const CONTACTS = [
@@ -287,10 +275,8 @@ const PROJECTS = [
 
     function buildProjects() {
       const cards = PROJECTS.map(p =>
-$('div', {className:'col-md-6'}, [
-  $('a', {href:p.demo, target:'_blank', className:'text-decoration-none text-dark'}, [
-    $('article', {className:'info-card p-3 reveal h-100 d-flex flex-column'}, [
-
+        $('div', {className:'col-md-6'}, [
+          $('article', {className:'info-card p-3 reveal h-100 d-flex flex-column'}, [
             $('h5', {className:'fw-semibold'}, [p.title]),
             $('p', {className:'text-muted small mb-2'}, [p.desc]),
             $('div', {className:'mt-auto d-flex justify-content-between align-items-center'}, [
