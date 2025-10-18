@@ -1,0 +1,346 @@
+<!doctype html>
+
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfolio - Vòong Sìn Phát</title>
+
+  <!-- Bootstrap CSS & Icons -->
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --accent: #6366f1;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --bg: #0f172a;
+      --bg-card: #1e293b;
+      --border: rgba(255,255,255,0.08);
+    }
+    body {
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+    .navbar {
+      background-color: rgba(15, 23, 42, 0.8) !important;
+      backdrop-filter: blur(8px);
+    }
+    .navbar-brand, .nav-link {
+      color: var(--text) !important;
+    }
+    .nav-link:hover {
+      color: var(--accent) !important;
+    }
+    .hero {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, rgba(79,70,229,0.15), transparent 60%);
+    }
+    .card-glass, .info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    .avatar {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 30px rgba(99,102,241,0.3);
+    }
+    .section-title {
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .skill-wrap {
+      background: rgba(255,255,255,0.1);
+      border-radius: 999px;
+      padding: 4px;
+      margin-bottom: 0.75rem;
+    }
+    .skill-bar {
+      height: 10px;
+      border-radius: 999px;
+      background: var(--accent);
+      transition: width .9s cubic-bezier(.2,.8,.2,1);
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.show {
+      opacity: 1;
+      transform: none;
+    }
+    footer {
+      padding: 2rem 0;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      color: #818cf8;
+    }
+    .btn-primary {
+      background-color: var(--accent);
+      border: none;
+    }
+    .btn-outline-primary {
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+    .btn-outline-primary:hover {
+      background-color: var(--accent);
+      color: white;
+    }
+
+    /* --- Tùy chỉnh giao diện phần Dự án --- */
+    #projects {
+      background: var(--background);
+      padding: 60px 0;
+    }
+    #projects h3 {
+      color: white;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    #projects .info-card {
+      background: #ffffff;
+      color: #111827;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+    }
+    #projects .info-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    }
+    #projects .info-card h5 {
+      color: #111827;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    #projects .info-card p {
+      color: #374151;
+      margin-bottom: 16px;
+    }
+
+    /* --- Chữ trắng cho phần Liên hệ --- */
+    #contact .info-card {
+      color: #ffffff;
+    }
+    #contact .info-card h4, 
+    #contact .info-card h5, 
+    #contact .info-card p, 
+    #contact .info-card a, 
+    #contact .info-card li {
+      color: #ffffff !important;
+    }
+  </style>
+
+</head>
+<body>
+  <div id="app"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+
+  <script defer>
+  document.addEventListener('DOMContentLoaded', () => {
+    const PERSONAL = {
+      name: 'Vòong Sìn Phát',
+      title: 'Sinh viên Công nghệ thông tin năm 2',
+      headline: 'Đam mê lập trình web, UI/UX và phát triển phần mềm sáng tạo.',
+      email: 'aphat1342@gmail.com',
+      phone: '0962120771',
+      location: 'Bình Dương, Việt Nam',
+      avatar: 'images/img1.png'
+    };
+
+    const SKILLS = [
+      {name: 'HTML & CSS', level: 90},
+      {name: 'Bootstrap', level: 85},
+      {name: 'JavaScript', level: 70},
+      {name: 'React (đang học)', level: 60}
+    ];
+
+    const PROJECTS = [
+      {title: 'Website quản lý sinh viên', desc: 'Ứng dụng quản lý danh sách sinh viên, tìm kiếm, lọc, CRUD đơn giản.', demo: '#', repo: '#'},
+      {title: 'Portfolio cá nhân', desc: 'Trang giới thiệu bản thân sử dụng DOM API + Bootstrap.', demo: '#', repo: '#'}
+    ];
+
+    const CONTACTS = [
+      {label: 'Github', icon: 'bi-github', url: 'https://github.com/username'},
+      {label: 'Facebook', icon: 'bi-facebook', url: 'https://www.facebook.com/share/1BcWaQLAVy/?mibextid=wwXIfr'},
+      {label: 'Instagram', icon: 'bi-instagram', url: 'https://instagram.com/username'}
+    ];
+
+    const $ = (tag, props = {}, children = []) => {
+      const el = document.createElement(tag);
+      for (const k in props) {
+        if (k === 'className') el.className = props[k];
+        else if (k === 'innerHTML') el.innerHTML = props[k];
+        else if (k === 'onclick') el.addEventListener('click', props[k]);
+        else el.setAttribute(k, props[k]);
+      }
+      children.flat().forEach(c => {
+        if (typeof c === 'string') el.appendChild(document.createTextNode(c));
+        else if (c instanceof Node) el.appendChild(c);
+      });
+      return el;
+    };
+
+    const smoothScrollTo = (hash) => {
+      const target = document.querySelector(hash);
+      if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
+    };
+
+    function buildNavbar() {
+      const nav = $('nav', {className: 'navbar navbar-expand-lg navbar-dark py-3 position-sticky top-0 w-100 z-3'}, [
+        $('div', {className:'container'}, [
+          $('a', {className:'navbar-brand fw-bold', href:'#'}, [PERSONAL.name]),
+          $('button', {className:'navbar-toggler', type:'button', 'data-bs-toggle':'collapse', 'data-bs-target':'#navmenu'}, [
+            $('span', {className:'navbar-toggler-icon'})
+          ]),
+          $('div', {className:'collapse navbar-collapse', id:'navmenu'}, [
+            $('ul', {className:'navbar-nav ms-auto gap-2'}, [
+              $('li', {className:'nav-item'}, [$('a', {className:'nav-link', href:'#about'}, ['Thông tin'])]),
+              $('li', {className:'nav-item'}, [$('a', {className:'nav-link', href:'#skills'}, ['Kỹ năng'])]),
+              $('li', {className:'nav-item'}, [$('a', {className:'nav-link', href:'#projects'}, ['Dự án'])]),
+              $('li', {className:'nav-item'}, [$('a', {className:'nav-link', href:'#contact'}, ['Liên hệ'])]),
+            ])
+          ])
+        ])
+      ]);
+      nav.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => { e.preventDefault(); smoothScrollTo(a.getAttribute('href')); });
+      });
+      return nav;
+    }
+
+    function buildHero() {
+      return $('header', {className:'hero'}, [
+        $('div', {className:'container text-center'}, [
+          $('img', {className:'avatar mb-3', src:PERSONAL.avatar, alt:PERSONAL.name}),
+          $('h1', {className:'fw-bold'}, [PERSONAL.name]),
+          $('p', {className:'text-muted mb-2'}, [PERSONAL.title]),
+          $('p', {className:'text-secondary'}, [PERSONAL.headline]),
+          $('div', {className:'d-flex justify-content-center gap-2 mt-3'}, [
+            $('a', {className:'btn btn-primary', href:'#projects'}, ['📁 Xem dự án']),
+            $('a', {className:'btn btn-outline-primary', href:'#contact'}, ['✉️ Liên hệ'])
+          ])
+        ])
+      ]);
+    }
+
+    function buildAbout() {
+      return $('section', {id:'about', className:'mb-5'}, [
+        $('div', {className:'info-card p-4 reveal'}, [
+          $('h3', {className:'section-title'}, ['Thông tin cá nhân']),
+          $('p', {}, [`Mình là ${PERSONAL.name}, hiện đang là ${PERSONAL.title}. ${PERSONAL.headline} 
+          Mục tiêu của mình là phát triển kỹ năng Frontend và học thêm Backend để trở thành Fullstack Developer.`])
+        ])
+      ]);
+    }
+
+    function buildSkills() {
+      const skillItems = SKILLS.map(s =>
+        $('div', {className:'mb-2'}, [
+          $('div', {className:'d-flex justify-content-between small mb-1'}, [s.name, `${s.level}%`]),
+          $('div', {className:'skill-wrap'}, [
+            $('div', {className:'skill-bar', style:`width:${s.level}%;`})
+          ])
+        ])
+      );
+      return $('section', {id:'skills', className:'mb-5'}, [
+        $('div', {className:'info-card p-4 reveal'}, [
+          $('h4', {className:'section-title'}, ['Kỹ năng']),
+          $('div', {className:'mt-3'}, skillItems)
+        ])
+      ]);
+    }
+
+    function buildProjects() {
+      const cards = PROJECTS.map(p =>
+        $('div', {className:'col-md-6'}, [
+          $('article', {className:'info-card p-3 reveal h-100 d-flex flex-column'}, [
+            $('h5', {className:'fw-semibold'}, [p.title]),
+            $('p', {className:'text-muted small mb-2'}, [p.desc]),
+            $('div', {className:'mt-auto d-flex justify-content-between align-items-center'}, [
+              $('div', {className:'small text-muted'}, ['HTML / JS / Bootstrap']),
+              $('div', {}, [
+                $('a', {className:'btn btn-sm btn-outline-primary me-2', href:p.demo, target:'_blank'}, ['Demo']),
+                $('a', {className:'btn btn-sm btn-primary', href:p.repo, target:'_blank'}, ['Repo'])
+              ])
+            ])
+          ])
+        ])
+      );
+      return $('section', {id:'projects', className:'mb-5'}, [
+        $('h3', {className:'section-title mb-3'}, ['Dự án']),
+        $('div', {className:'row g-4'}, cards)
+      ]);
+    }
+
+    function buildContact() {
+      return $('section', {id:'contact', className:'mb-5'}, [
+        $('div', {className:'row g-4'}, [
+          $('div', {className:'col-lg-6'}, [
+            $('div', {className:'info-card p-4 reveal'}, [
+              $('h4', {className:'section-title'}, ['Liên hệ']),
+              $('p', {className:'small'}, ['Bạn có thể liên hệ với mình qua email hoặc mạng xã hội.']),
+              $('ul', {className:'list-unstyled small mt-3'}, [
+                $('li', {}, ['📧 ', PERSONAL.email]),
+                $('li', {}, ['📞 ', PERSONAL.phone]),
+                $('li', {}, ['📍 ', PERSONAL.location])
+              ])
+            ])
+          ]),
+          $('div', {className:'col-lg-6'}, [
+            $('div', {className:'info-card p-4 reveal'}, [
+              $('h5', {className:'section-title mb-2'}, ['Mạng xã hội']),
+              ...CONTACTS.map(c => $('a', {className:'d-block text-decoration-none mb-1 text-light', href:c.url, target:'_blank'}, [
+                $('i', {className:`bi ${c.icon} me-2 text-accent`}),' ', c.label
+              ]))
+            ])
+          ])
+        ])
+      ]);
+    }
+
+    const app = document.getElementById('app');
+    app.append(
+      buildNavbar(),
+      buildHero(),
+      $('main', {className:'container py-5'}, [
+        buildAbout(),
+        buildSkills(),
+        buildProjects(),
+        buildContact()
+      ]),
+      $('footer', {className:'text-center small'}, ['© 2025 Vòong Sìn Phát. Tất cả quyền được bảo lưu.'])
+    );
+
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+    }, {threshold: 0.1});
+    reveals.forEach(r => observer.observe(r));
+  });
+  </script>
+
+</body>
+</html>
